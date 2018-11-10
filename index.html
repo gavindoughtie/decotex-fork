@@ -1,0 +1,152 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>React</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="googlebot" content="noindex, nofollow">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <script type="text/javascript" src="//unpkg.com/react/umd/react.development.js"></script>
+    <script type="text/javascript" src="//unpkg.com/react-dom/umd/react-dom.development.js"></script>
+    <script type="text/javascript" src="/js/babel/babel.js"></script>
+
+  <script
+    type="text/javascript"
+    src="/js/lib/dummy.js"
+    
+  ></script>
+    <link rel="stylesheet" type="text/css" href="/css/normalize.css">
+
+    <link rel="stylesheet" type="text/css" href="/css/result-light.css">
+
+  <style type="text/css">
+    body {
+  background: #20262E;
+  padding: 20px;
+  font-family: Helvetica;
+}
+
+#app {
+  background: #fff;
+  border-radius: 4px;
+  padding: 20px;
+  transition: all 0.2s;
+}
+
+li {
+  margin: 8px 0;
+}
+
+h2 {
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+.done {
+  color: rgba(0, 0, 0, 0.3);
+  text-decoration: line-through;
+}
+
+input {
+  margin-right: 5px;
+}
+  </style>
+  <!-- TODO: Missing CoffeeScript 2 -->
+
+  <script type="text/jsx"
+    data-presets="es2017,react,stage-0"
+    data-plugins="transform-decorators-legacy">
+
+
+  
+String.prototype.interpolate = function(params) {
+  const names = Object.keys(params);
+  const vals = Object.values(params);
+  return new Function(...names, `return \`${this}\`;`)(...vals);
+}
+
+const randValue = values => values[Math.floor(Math.random() * values.length)];
+
+const makeProblem = (data) => {
+	const keys = Object.keys(data);
+  const randValues = {};
+  for (const key of keys) {
+  	randValues[key] = randValue(data[key]);
+  }
+  return randValues.phrase.interpolate(randValues)
+};
+
+
+class TodoApp extends React.Component {
+  constructor(props) {
+    super(props)
+    const data = window.DATA;
+    // data.phrases = data.phrases.map(generateTemplateString);
+    this.state = {
+    	data: window.DATA,
+      problem: 'I have no problem. Make one by clicking the button below.'
+    };
+    this.makeProblem = (() => {
+    	this.setState(
+    	 {
+        	problem: makeProblem(this.state.data)
+        });
+    }).bind(this);
+
+  }
+  
+  render() {
+    return (
+      <div>
+        <h1>{this.state.problem}</h1>
+        <button onClick={() => this.makeProblem()}>Make A Problem:</button>
+      </div>
+    )
+  }
+}
+
+ReactDOM.render(<TodoApp />, document.querySelector("#app"))
+
+
+
+</script>
+
+</head>
+<body>
+  <script>
+	DATA = {
+  	app: ['Uber', 'Instacart'],
+  	noun: ['avocado', 'pug', 'Bernie', 'Trump'],
+    pluralNoun: ['people'],
+    verb: ['protested', 'selfied', 'posted', 'complained'],
+    location: ['Whole Foods'],
+    containerLocation: ['Apple Store'],
+    phrase: [
+    	"${app} is being slow, and now I don't have any ${noun}",
+      "${app} is down and I can’t access my ${noun}.",
+			"I’m out of ${noun}.",
+			"New York Times says I’m killing the ${noun} industry.",
+			"I left my ${noun} at the ${location}.",
+			"I left my ${noun} in ${containerLocation}.",
+			"I’m really anxious about ${pluralNoun}",
+			"I’m really anxious about ${app}",
+			"I’m sick of seeing ${noun} at the ${location}"
+    ]
+  };
+</script>
+<div id="app"></div>
+  
+  <script>
+    // tell the embed parent frame the height of the content
+    if (window.parent && window.parent.parent){
+      window.parent.parent.postMessage(["resultsFrame", {
+        height: document.body.getBoundingClientRect().height,
+        slug: ""
+      }], "*")
+    }
+  </script>
+</body>
+</html>
