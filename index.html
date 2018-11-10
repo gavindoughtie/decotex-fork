@@ -47,7 +47,7 @@ input {
 
 </head>
 <body>
-	<h1 id="problem">I have a problem</h1>
+	<h1 id="problem">I have a problem :(</h1>
 	<button onclick="updateProblem()">Update Problem</button>
   <script>
 	DATA = {
@@ -93,6 +93,7 @@ function updateProblem() {
 }
 
 	  updateProblem();
+	  window.setInterval(updateProblem, 5000);
 </script>
 	</body>
 </html>
