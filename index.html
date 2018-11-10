@@ -43,14 +43,19 @@ input {
   margin-right: 5px;
 }
   </style>
-  <!-- TODO: Missing CoffeeScript 2 -->
+
+
+</head>
+<body>
+	<h1 id="problem">I have a problem</h1>
+	<button onclick="updateProblem()">Update Problem</button>
   <script>
 	DATA = {
   	app: ['Uber', 'Instacart'],
   	noun: ['avocado', 'pug', 'Bernie', 'Trump'],
-    pluralNoun: ['people'],
+    pluralNoun: ["Reusable water bottles", "phones", "key fobs", "bomber jackets", "90s themed hair accessories"],
     verb: ['protested', 'selfied', 'posted', 'complained'],
-    location: ['Whole Foods'],
+    location: ["Bubble tea shop", "Philz coffee", "protest", "beach", "weed store", "fusion restaurant"],
     containerLocation: ['Apple Store'],
     phrase: [
     	"${app} is being slow, and now I don't have any ${noun}",
@@ -88,10 +93,5 @@ function updateProblem() {
 }
 
 </script>
-
-</head>
-<body>
-	<h1 id="problem">I have a problem</h1>
-	<button onclick="updateProblem()">Update Problem</button>
-</body>
+	</body>
 </html>
