@@ -8,15 +8,13 @@
   <meta name="robots" content="noindex, nofollow">
   <meta name="googlebot" content="noindex, nofollow">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.24.0/babel.js"></script>
-<script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
-<script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
 
   <style type="text/css">
     body {
   background: #20262E;
   padding: 20px;
   font-family: Helvetica;
+	    font-size:48pt;
 }
 
 #app {
@@ -65,12 +63,6 @@ input {
 			"I’m sick of seeing ${noun} at the ${location}"
     ]
   };
-</script>
-  <script type="text/jsx"
-    data-presets="es2017,react,stage-0"
-    data-plugins="transform-decorators-legacy">
-
-
   
 String.prototype.interpolate = function(params) {
   const names = Object.keys(params);
@@ -88,47 +80,17 @@ const makeProblem = (data) => {
   }
   return randValues.phrase.interpolate(randValues)
 };
-
-
-class MillenialApp extends React.Component {
-  constructor(props) {
-    super(props)
-    const data = window.DATA;
-    // data.phrases = data.phrases.map(generateTemplateString);
-    this.state = {
-    	data: window.DATA,
-      problem: 'I have no problem. Make one by clicking the button below.'
-    };
-    this.makeProblem = (() => {
-    	this.setState(
-    	 {
-        	problem: makeProblem(this.state.data)
-        });
-    }).bind(this);
-
-  }
-  
-  render() {
-    return (
-      <div>
-        <h1>{this.state.problem}</h1>
-        <button onClick={() => this.makeProblem()}>Make A Problem:</button>
-      </div>
-    )
-  }
+	  
+function updateProblem() {
+	var el = document.getElementById('problem');
+	el.innerText = makeProblem(DATA);
 }
-
-
-
 
 </script>
 
 </head>
 <body>
-
-<div id="app"></div>
-  <script>
-  ReactDOM.render(<MillenialApp />, document.querySelector("#app"))
-	</script>
+	<h1 id="problem">I have a problem</h1>
+	<button onclick="updateProblem()">Update Problem</button>
 </body>
 </html>
