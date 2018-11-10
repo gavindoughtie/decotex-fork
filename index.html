@@ -8,19 +8,9 @@
   <meta name="robots" content="noindex, nofollow">
   <meta name="googlebot" content="noindex, nofollow">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <script type="text/javascript" src="//unpkg.com/react/umd/react.development.js"></script>
-    <script type="text/javascript" src="//unpkg.com/react-dom/umd/react-dom.development.js"></script>
-    <script type="text/javascript" src="/js/babel/babel.js"></script>
-
-  <script
-    type="text/javascript"
-    src="/js/lib/dummy.js"
-    
-  ></script>
-    <link rel="stylesheet" type="text/css" href="/css/normalize.css">
-
-    <link rel="stylesheet" type="text/css" href="/css/result-light.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.24.0/babel.js"></script>
+<script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
 
   <style type="text/css">
     body {
@@ -55,7 +45,27 @@ input {
 }
   </style>
   <!-- TODO: Missing CoffeeScript 2 -->
-
+  <script>
+	DATA = {
+  	app: ['Uber', 'Instacart'],
+  	noun: ['avocado', 'pug', 'Bernie', 'Trump'],
+    pluralNoun: ['people'],
+    verb: ['protested', 'selfied', 'posted', 'complained'],
+    location: ['Whole Foods'],
+    containerLocation: ['Apple Store'],
+    phrase: [
+    	"${app} is being slow, and now I don't have any ${noun}",
+      "${app} is down and I can’t access my ${noun}.",
+			"I’m out of ${noun}.",
+			"New York Times says I’m killing the ${noun} industry.",
+			"I left my ${noun} at the ${location}.",
+			"I left my ${noun} in ${containerLocation}.",
+			"I’m really anxious about ${pluralNoun}",
+			"I’m really anxious about ${app}",
+			"I’m sick of seeing ${noun} at the ${location}"
+    ]
+  };
+</script>
   <script type="text/jsx"
     data-presets="es2017,react,stage-0"
     data-plugins="transform-decorators-legacy">
@@ -108,7 +118,6 @@ class MillenialApp extends React.Component {
   }
 }
 
-ReactDOM.render(<MillenialApp />, document.querySelector("#app"))
 
 
 
@@ -116,31 +125,10 @@ ReactDOM.render(<MillenialApp />, document.querySelector("#app"))
 
 </head>
 <body>
-  <script>
-	DATA = {
-  	app: ['Uber', 'Instacart'],
-  	noun: ['avocado', 'pug', 'Bernie', 'Trump'],
-    pluralNoun: ['people'],
-    verb: ['protested', 'selfied', 'posted', 'complained'],
-    location: ['Whole Foods'],
-    containerLocation: ['Apple Store'],
-    phrase: [
-    	"${app} is being slow, and now I don't have any ${noun}",
-      "${app} is down and I can’t access my ${noun}.",
-			"I’m out of ${noun}.",
-			"New York Times says I’m killing the ${noun} industry.",
-			"I left my ${noun} at the ${location}.",
-			"I left my ${noun} in ${containerLocation}.",
-			"I’m really anxious about ${pluralNoun}",
-			"I’m really anxious about ${app}",
-			"I’m sick of seeing ${noun} at the ${location}"
-    ]
-  };
-</script>
+
 <div id="app"></div>
-  
   <script>
-	  ReactDOM();
-  </script>
+  ReactDOM.render(<MillenialApp />, document.querySelector("#app"))
+	</script>
 </body>
 </html>
